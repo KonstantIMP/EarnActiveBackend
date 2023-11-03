@@ -1,0 +1,10 @@
+server:
+  port: 9091
+grpc:
+  client:
+    auth:
+      address: "localhost:9090"
+      negotiationType: plaintext
+    weather:
+      address: "localhost:9093"
+      negotiationType: plaintext

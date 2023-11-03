@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package earnactive;
+
+import "dto.proto";
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.weather.api";
+
+service IEarnAuthWeather {
+  rpc GetWeatherInfo(TWeatherInfoReq) returns (TWeatherInfoRsp) {}
+}

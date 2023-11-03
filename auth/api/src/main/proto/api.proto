@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package earnactive;
+
+import "dto.proto";
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.auth.api";
+
+service IEarnActiveAuth {
+  rpc CreateUser (TCreateUserReq) returns (TCreateUserRsp) {}
+  rpc AuthUser (TAuthUserReq) returns (TAuthUserRsp) {}
+  rpc ConfirmUser (TConfirmUserReq) returns (TConfirmUserRsp) {}
+  rpc RefreshToken (TRefreshTokenReq) returns (TRefreshTokenRsp) {}
+  rpc GetUserInfo (TGetUserInfoReq) returns (TGetUserInfoRsp) {}
+}

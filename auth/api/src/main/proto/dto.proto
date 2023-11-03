@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package earnactive;
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.auth.api";
+
+import "google/protobuf/timestamp.proto";
+
+message TTransaction {
+  string uuid = 1;
+  google.protobuf.Timestamp dead_time = 2;
+}
+
+message TCredentials {
+  string auth_token = 1;
+  google.protobuf.Timestamp auth_token_expiration_timestamp = 2;
+
+  string refresh_token = 3;
+  google.protobuf.Timestamp refresh_token_expiration_timestamp = 4;
+}
+
+message TCreateUserReq {
+  string name = 1;
+  string phone = 2;
+}
+
+message TCreateUserRsp {
+  TTransaction user_creation_transaction = 1;
+}
+
+message TAuthUserReq {
+  string phone = 1;
+}
+
+message TAuthUserRsp {
+  TTransaction user_auth_transaction = 1;
+}
+
+message TConfirmUserReq {
+  string transaction_uuid = 1;
+  string confirm_code = 2;
+}
+
+message TConfirmUserRsp {
+  TCredentials user_credentials = 1;
+  google.protobuf.Timestamp confirmation_timestamp = 2;
+}
+
+message TGetUserInfoReq {
+  string auth_token = 1;
+}
+
+message TGetUserInfoRsp {
+  string uuid = 1;
+  string name = 2;
+  string phone = 3;
+  google.protobuf.Timestamp creation_timestamp = 4;
+}
+
+message TRefreshTokenReq {
+  string refresh_token = 1;
+}
+
+message TRefreshTokenRsp {
+  TCredentials new_credentials = 1;
+  google.protobuf.Timestamp refresh_timestamp = 2;
+}

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package earnactive;
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.weather.api";
+
+enum EWeatherType {
+  EWeatherType_UNKNOWN = 0;
+  EWeatherType_THUNDERSTORM = 1;
+  EWeatherType_DRIZZLE = 2;
+  EWeatherType_RAIN = 3;
+  EWeatherType_SNOW = 4;
+  EWeatherType_MIST = 5;
+  EWeatherType_SMOKE = 6;
+  EWeatherType_HAZE = 7;
+  EWeatherType_DUST = 8;
+  EWeatherType_FOG = 9;
+  EWeatherType_SAND = 10;
+  EWeatherType_ASH = 11;
+  EWeatherType_SQUALL = 12;
+  EWeatherType_TORNADO = 13;
+  EWeatherType_CLEAR = 14;
+  EWeatherType_CLOUDS = 15;
+}
+
+message TWeatherInfoReq {
+  string access_token = 1;
+  double latitude = 2;
+  double longitude = 3;
+}
+
+message TWeatherInfoRsp {
+  double temperature = 1;
+  EWeatherType weather_type = 2;
+  string background_url = 3;
+}

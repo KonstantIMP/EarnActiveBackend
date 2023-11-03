@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package earnactive;
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.auth.api";
+
+import "google/protobuf/timestamp.proto";
+
+enum EJwtTokenType {
+  EJwtTokenType_AUTH = 0;
+  EJwtTokenType_REFRESH = 1;
+}
+
+message TJwtContent {
+  string user_uuid = 1;
+  EJwtTokenType token_type = 2;
+  google.protobuf.Timestamp expiration_timestamp = 3;
+}
