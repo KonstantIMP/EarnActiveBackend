@@ -55,6 +55,8 @@ class AuthController (
             val user = usersService.getUserByPhone(request.phone)
                 ?: usersService.createUser(request.phone, "").also { isNew = true }
 
+            if (user.name?.isEmpty() != false) isNew = true
+
             val transaction = transactionsService.requestTransactionForUser(user.uuid!!)
             responseObserver.onNext(
                 TAuthUserRsp.newBuilder()
