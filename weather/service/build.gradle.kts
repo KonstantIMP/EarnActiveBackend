@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     alias(libs.plugins.shadow)
     id("application")
@@ -18,4 +20,8 @@ dependencies {
     implementation(projects.weather.api)
     implementation(projects.weather.owa)
     implementation(libs.config)
+}
+
+tasks.withType<ShadowJar>().configureEach {
+    mergeServiceFiles()
 }
