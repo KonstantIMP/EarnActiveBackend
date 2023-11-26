@@ -45,7 +45,15 @@ class PromoCodesController {
             promocodesStub.getMyPromoCodes(
                 TGetMyPromoCodesReq.newBuilder().setAccessToken(accessToken).build()
             ).promoCodesList
-                .map { p -> Promocode(p.promoCodeInfo.uuid, p.promoCodeInfo.name, p.promoCodeInfo.description, p.promoCodeInfo.cost, p.promoCodeValue) }
+                .map { p ->
+                    Promocode(
+                        p.promoCodeInfo.uuid,
+                        p.promoCodeInfo.name,
+                        p.promoCodeInfo.description,
+                        p.promoCodeInfo.cost,
+                        p.promoCodeValue
+                    )
+                }
         )
     }
 

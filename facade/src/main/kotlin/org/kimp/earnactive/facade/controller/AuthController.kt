@@ -92,7 +92,10 @@ class AuthController {
         phone: String
     ): TransactionResponse {
         val transactionResponse = authStub.authUser(TAuthUserReq.newBuilder().setPhone(phone).build())
-        return TransactionResponse(transactionUuid = transactionResponse.userAuthTransaction.uuid, transactionResponse.isNew)
+        return TransactionResponse(
+            transactionUuid = transactionResponse.userAuthTransaction.uuid,
+            transactionResponse.isNew
+        )
     }
 
     @PostMapping("/confirm")
