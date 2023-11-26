@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("auth")
-class AuthController {
+class AuthController : BaseController() {
     @GrpcClient("auth")
     private lateinit var authStub: IEarnActiveAuthBlockingStub
 

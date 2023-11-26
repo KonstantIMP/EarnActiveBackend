@@ -21,7 +21,7 @@ class WeatherService(
         request: TWeatherInfoReq,
         responseObserver: StreamObserver<TWeatherInfoRsp>
     ) {
-        val userInfo = authStub.getUserInfo(
+        authStub.getUserInfo(
             TGetUserInfoReq.newBuilder()
                 .setAuthToken(request.accessToken)
                 .build()

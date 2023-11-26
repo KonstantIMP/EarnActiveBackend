@@ -20,7 +20,7 @@ class WeatherMapper (
         if (w.weatherConditions.isEmpty()) return EWeatherType.EWeatherType_UNKNOWN
         return try {
             EWeatherType.valueOf("EWeatherType_${w.weatherConditions[0].main.uppercase()}")
-        } catch (e: IllegalArgumentException) {
+        } catch (e: IllegalStateException) {
             EWeatherType.EWeatherType_UNKNOWN
         }
     }
