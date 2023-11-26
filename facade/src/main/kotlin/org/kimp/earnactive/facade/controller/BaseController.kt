@@ -1,18 +1,18 @@
 package org.kimp.earnactive.facade.controller
 
 import io.grpc.Status
-import io.grpc.StatusRuntimeException
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.web.bind.annotation.ExceptionHandler
 
 open class BaseController {
 
-    @ExceptionHandler(StatusRuntimeException::class)
+    @ExceptionHandler(Exception::class)
     fun handleGrpcStubException(
         httpServletResponse: HttpServletResponse,
-        grpcEx: StatusRuntimeException
+        grpcEx: Exception
     ) {
-        when (grpcEx.status) {
+        val status = Status.fromThrowable(grpcEx)
+        when (status) {
             Status.NOT_FOUND -> writeResponse(httpServletResponse, 404)
             Status.UNAUTHENTICATED -> writeResponse(httpServletResponse, 401)
             Status.INVALID_ARGUMENT -> writeResponse(httpServletResponse, 400)
