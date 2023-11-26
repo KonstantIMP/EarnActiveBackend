@@ -4,11 +4,29 @@
 package org.kimp.earnactive.db.tables.references
 
 
+import org.kimp.earnactive.db.tables.Promocodes
+import org.kimp.earnactive.db.tables.StepsChanges
 import org.kimp.earnactive.db.tables.Users
+import org.kimp.earnactive.db.tables.UsersPromocodes
 
 
+
+/**
+ * The table <code>public.promocodes</code>.
+ */
+val PROMOCODES: Promocodes = Promocodes.PROMOCODES
+
+/**
+ * The table <code>public.steps_changes</code>.
+ */
+val STEPS_CHANGES: StepsChanges = StepsChanges.STEPS_CHANGES
 
 /**
  * The table <code>public.users</code>.
  */
 val USERS: Users = Users.USERS
+
+/**
+ * The table <code>public.users_promocodes</code>.
+ */
+val USERS_PROMOCODES: UsersPromocodes = UsersPromocodes.USERS_PROMOCODES

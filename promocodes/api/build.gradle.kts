@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm")
 }
 
-group = "org.kimp.earnactive.auth"
+group = "org.kimp.earnactive.promocodes"
 
 dependencies {
     implementation(libs.protobuf.kt)

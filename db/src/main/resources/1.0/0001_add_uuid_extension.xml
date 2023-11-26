@@ -7,7 +7,7 @@
                 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="0001" author="KonstantIMP">
+    <changeSet id="1_0001" author="KonstantIMP">
         <comment>Enable UUIDs auto-generation support</comment>
         <sql>
             CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package earnactive;
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.promocodes.api";
+
+import "google/protobuf/timestamp.proto";
+
+message TPromoCodeInfo {
+  string uuid = 1;
+  string name = 2;
+  string description = 3;
+  int32 cost = 4;
+  google.protobuf.Timestamp expiration_timestamp = 5;
+}
+
+message TGetPromoCodesInfoReq {
+  string access_token = 1;
+}
+
+message TGetPromoCodesInfoRsp {
+  repeated TPromoCodeInfo promo_codes = 1;
+}
+
+message TPromoCode {
+  TPromoCodeInfo promo_code_info = 1;
+  string promo_code_value = 2;
+}
+
+message TGetMyPromoCodesReq {
+  string access_token = 1;
+  bool ignore_used = 2;
+  bool ignore_expired = 3;
+}
+
+message TGetMyPromoCodesRsp {
+  repeated TPromoCode promo_codes = 1;
+}
+
+message TBuyPromoCodeReq {
+  string access_token = 1;
+  string promo_code_uuid = 2;
+}
+
+message TBuyPromoCodeRsp {
+  TPromoCode promo_code = 1;
+}
+
+message TGetMyStepsBalanceReq {
+  string access_token = 1;
+}
+
+message TGetMyStepsBalanceRsp {
+  int32 balance = 1;
+}
+
+message TAddStepsReq {
+  string access_token = 1;
+  int32 steps = 2;
+}
+
+message TAddStepsRsp {
+  int32 added_steps = 1;
+}

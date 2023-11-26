@@ -35,6 +35,7 @@ message TAuthUserReq {
 
 message TAuthUserRsp {
   TTransaction user_auth_transaction = 1;
+  bool is_new = 2;
 }
 
 message TConfirmUserReq {
@@ -66,3 +67,10 @@ message TRefreshTokenRsp {
   TCredentials new_credentials = 1;
   google.protobuf.Timestamp refresh_timestamp = 2;
 }
+
+message TSetNameReq {
+  string access_token = 1;
+  string name = 2;
+}
+
+message TSetNameRsp {}

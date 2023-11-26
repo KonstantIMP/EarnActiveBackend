@@ -4,10 +4,17 @@
 package org.kimp.earnactive.db.keys
 
 
+import org.jooq.ForeignKey
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
+import org.kimp.earnactive.db.tables.Promocodes
+import org.kimp.earnactive.db.tables.StepsChanges
 import org.kimp.earnactive.db.tables.Users
+import org.kimp.earnactive.db.tables.UsersPromocodes
+import org.kimp.earnactive.db.tables.records.PromocodesRecord
+import org.kimp.earnactive.db.tables.records.StepsChangesRecord
+import org.kimp.earnactive.db.tables.records.UsersPromocodesRecord
 import org.kimp.earnactive.db.tables.records.UsersRecord
 
 
@@ -16,5 +23,14 @@ import org.kimp.earnactive.db.tables.records.UsersRecord
 // UNIQUE and PRIMARY KEY definitions
 // -------------------------------------------------------------------------
 
+val PROMOCODES_PKEY: UniqueKey<PromocodesRecord> = Internal.createUniqueKey(Promocodes.PROMOCODES, DSL.name("PROMOCODES_pkey"), arrayOf(Promocodes.PROMOCODES.UUID), true)
 val USERS_PHONE_KEY: UniqueKey<UsersRecord> = Internal.createUniqueKey(Users.USERS, DSL.name("users_phone_key"), arrayOf(Users.USERS.PHONE), true)
 val USERS_PKEY: UniqueKey<UsersRecord> = Internal.createUniqueKey(Users.USERS, DSL.name("USERS_pkey"), arrayOf(Users.USERS.UUID), true)
+
+// -------------------------------------------------------------------------
+// FOREIGN KEY definitions
+// -------------------------------------------------------------------------
+
+val STEPS_CHANGES__FK_STEPS_USER: ForeignKey<StepsChangesRecord, UsersRecord> = Internal.createForeignKey(StepsChanges.STEPS_CHANGES, DSL.name("fk_steps_user"), arrayOf(StepsChanges.STEPS_CHANGES.USER_UUID), org.kimp.earnactive.db.keys.USERS_PKEY, arrayOf(Users.USERS.UUID), true)
+val USERS_PROMOCODES__FK_PROMOCODE_USER: ForeignKey<UsersPromocodesRecord, PromocodesRecord> = Internal.createForeignKey(UsersPromocodes.USERS_PROMOCODES, DSL.name("fk_promocode_user"), arrayOf(UsersPromocodes.USERS_PROMOCODES.PROMOCODE_UUID), org.kimp.earnactive.db.keys.PROMOCODES_PKEY, arrayOf(Promocodes.PROMOCODES.UUID), true)
+val USERS_PROMOCODES__FK_USER_PROMOCODE: ForeignKey<UsersPromocodesRecord, UsersRecord> = Internal.createForeignKey(UsersPromocodes.USERS_PROMOCODES, DSL.name("fk_user_promocode"), arrayOf(UsersPromocodes.USERS_PROMOCODES.USER_UUID), org.kimp.earnactive.db.keys.USERS_PKEY, arrayOf(Users.USERS.UUID), true)

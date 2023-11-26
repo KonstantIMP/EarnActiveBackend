@@ -8,3 +8,6 @@ grpc:
     weather:
       address: "localhost:9093"
       negotiationType: plaintext
+    promocodes:
+      address: "localhost:9094"
+      negotiationType: plaintext

@@ -7,23 +7,19 @@
                 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="1_0002" author="KonstantIMP">
-        <comment>Create table for users storage</comment>
-        <createTable tableName="USERS">
+    <changeSet id="2_0004" author="KonstantIMP">
+        <comment>Create table for steps counting</comment>
+        <createTable tableName="STEPS_CHANGES">
 
-            <column name="uuid" type="UUID">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="user_uuid" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_steps_user" references="USERS(UUID)"/>
             </column>
 
-            <column name="phone" type="VARCHAR(32)">
-                <constraints unique="true" nullable="false" />
-            </column>
-
-            <column name="name" type="VARCHAR(256)">
+            <column name="diff" type="INTEGER">
                 <constraints nullable="false" />
             </column>
 
-            <column name="creation_timestamp" type="TIMESTAMP" defaultValue="now()">
+            <column name="date" type="DATE" defaultValueComputed="NOW()">
                 <constraints nullable="false" />
             </column>
 

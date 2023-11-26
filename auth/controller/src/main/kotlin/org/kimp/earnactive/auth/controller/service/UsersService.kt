@@ -32,5 +32,12 @@ class UsersService (
         .fetchOne()
         ?.into(Users::class.java)
 
+    fun setUserName(userUUID: UUID, name: String) {
+        context().update(USERS)
+            .set(USERS.NAME, name)
+            .where(USERS.UUID.eq(userUUID))
+            .execute()
+    }
+
     private fun context() = DSL.using(connectionsPool.connection, SQLDialect.POSTGRES)
 }

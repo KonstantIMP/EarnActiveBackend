@@ -13,4 +13,5 @@ service IEarnActiveAuth {
   rpc ConfirmUser (TConfirmUserReq) returns (TConfirmUserRsp) {}
   rpc RefreshToken (TRefreshTokenReq) returns (TRefreshTokenRsp) {}
   rpc GetUserInfo (TGetUserInfoReq) returns (TGetUserInfoRsp) {}
+  rpc SetName(TSetNameReq) returns (TSetNameRsp) {}
 }

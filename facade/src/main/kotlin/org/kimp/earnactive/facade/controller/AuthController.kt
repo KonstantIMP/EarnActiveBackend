@@ -10,6 +10,7 @@ import org.kimp.earnactive.auth.api.TConfirmUserReq
 import org.kimp.earnactive.auth.api.TCreateUserReq
 import org.kimp.earnactive.auth.api.TGetUserInfoReq
 import org.kimp.earnactive.auth.api.TRefreshTokenReq
+import org.kimp.earnactive.auth.api.TSetNameReq
 import org.kimp.earnactive.facade.dto.TransactionResponse
 import org.kimp.earnactive.facade.dto.UserCredentials
 import org.kimp.earnactive.facade.dto.UserResponse
@@ -25,6 +26,22 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController {
     @GrpcClient("auth")
     private lateinit var authStub: IEarnActiveAuthBlockingStub
+
+    @PostMapping("/name")
+    fun setName(
+        @RequestHeader(name = "OAuth", required = true)
+        authToken: String,
+        @RequestParam("name")
+        name: String
+    ): UserResponse {
+        authStub.setName(
+            TSetNameReq.newBuilder()
+                .setAccessToken(authToken)
+                .setName(name)
+                .build()
+        )
+        return getMe(authToken)
+    }
 
     @PostMapping("/new")
     @Operation(
@@ -75,7 +92,7 @@ class AuthController {
         phone: String
     ): TransactionResponse {
         val transactionResponse = authStub.authUser(TAuthUserReq.newBuilder().setPhone(phone).build())
-        return TransactionResponse(transactionUuid = transactionResponse.userAuthTransaction.uuid)
+        return TransactionResponse(transactionUuid = transactionResponse.userAuthTransaction.uuid, transactionResponse.isNew)
     }
 
     @PostMapping("/confirm")

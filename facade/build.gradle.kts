@@ -13,6 +13,7 @@ plugins {
 
 dependencies {
     implementation(libs.bundles.spring)
+    implementation(projects.promocodes.api)
     implementation(projects.weather.api)
     implementation(projects.auth.api)
     implementation(libs.kotlinx.serialization.json)

@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass = "org.kimp.earnactive.weather.service.AppKt"
+    mainClass = "org.kimp.earnactive.promocodes.service.AppKt"
 }
 
 dependencies {
@@ -15,7 +15,10 @@ dependencies {
     implementation(projects.auth.api)
     implementation(projects.common.lock)
     implementation(projects.common.now)
-    implementation(projects.weather.api)
-    implementation(projects.weather.owa)
+    implementation(projects.promocodes.api)
     implementation(libs.config)
+    implementation(libs.hikari)
+    implementation(libs.jooq)
+    implementation(libs.psql)
+    implementation(projects.db)
 }

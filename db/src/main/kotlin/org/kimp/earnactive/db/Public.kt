@@ -9,7 +9,10 @@ import kotlin.collections.List
 import org.jooq.Catalog
 import org.jooq.Table
 import org.jooq.impl.SchemaImpl
+import org.kimp.earnactive.db.tables.Promocodes
+import org.kimp.earnactive.db.tables.StepsChanges
 import org.kimp.earnactive.db.tables.Users
+import org.kimp.earnactive.db.tables.UsersPromocodes
 
 
 /**
@@ -26,13 +29,31 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
     }
 
     /**
+     * The table <code>public.promocodes</code>.
+     */
+    val PROMOCODES: Promocodes get() = Promocodes.PROMOCODES
+
+    /**
+     * The table <code>public.steps_changes</code>.
+     */
+    val STEPS_CHANGES: StepsChanges get() = StepsChanges.STEPS_CHANGES
+
+    /**
      * The table <code>public.users</code>.
      */
     val USERS: Users get() = Users.USERS
 
+    /**
+     * The table <code>public.users_promocodes</code>.
+     */
+    val USERS_PROMOCODES: UsersPromocodes get() = UsersPromocodes.USERS_PROMOCODES
+
     public override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
 
     public override fun getTables(): List<Table<*>> = listOf(
-        Users.USERS
+        Promocodes.PROMOCODES,
+        StepsChanges.STEPS_CHANGES,
+        Users.USERS,
+        UsersPromocodes.USERS_PROMOCODES
     )
 }

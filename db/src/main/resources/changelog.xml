@@ -11,4 +11,10 @@
     <include file="1.0/0002_create_users_table.xml" relativeToChangelogFile="true" />
     <include file="1.0/0003_auto_users_uuid_generation.xml" relativeToChangelogFile="true" />
 
+    <include file="2.0/0001_create_promocodes_table.xml" relativeToChangelogFile="true" />
+    <include file="2.0/0002_auto_promocodes_uuid_generation.xml" relativeToChangelogFile="true" />
+    <include file="2.0/0003_fill_promocodes.xml" relativeToChangelogFile="true" />
+    <include file="2.0/0004_create_users_steps_changes_table.xml" relativeToChangelogFile="true" />
+    <include file="2.0/0005_create_user_promocodes_table.xml" relativeToChangelogFile="true" />
+
 </databaseChangeLog>

@@ -28,6 +28,9 @@ include(
     "auth:sms-cli",
     "auth:controller",
 
+    "promocodes:api",
+    "promocodes:service",
+
     "weather:api",
     "weather:owa",
     "weather:owa-cli",

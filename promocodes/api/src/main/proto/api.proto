@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package earnactive;
+
+option java_multiple_files = true;
+option java_package = "org.kimp.earnactive.promocodes.api";
+
+import "dto.proto";
+
+service IEarnActivePromoCodes {
+  rpc GetPromoCodesInfo(TGetPromoCodesInfoReq) returns (TGetPromoCodesInfoRsp) {}
+  rpc GetMyPromoCodes(TGetMyPromoCodesReq) returns (TGetMyPromoCodesRsp) {}
+  rpc BuyPromoCode(TBuyPromoCodeReq) returns (TBuyPromoCodeRsp) {}
+  rpc GetMyStepsBalance(TGetMyStepsBalanceReq) returns (TGetMyStepsBalanceRsp) {}
+  rpc AddSteps(TAddStepsReq) returns (TAddStepsRsp) {}
+}

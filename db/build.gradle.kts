@@ -133,10 +133,10 @@ val jooqByPostgres = tasks.create("jooqByPostgres") {
 
 tasks.create("runLiquibase") {
     doLast {
-        val dbAddr = System.getenv("EA_DATABASE_ADDR") ?: ""
-        val dbName = System.getenv("EA_DATABASE_NAME") ?: ""
-        val dbUser = System.getenv("EA_DATABASE_USER") ?: ""
-        val dbPass = System.getenv("EA_DATABASE_PWD") ?: ""
+        val dbAddr = System.getenv("EA_DATABASE_ADDR") ?: "localhost:5432"
+        val dbName = System.getenv("EA_DATABASE_NAME") ?: "earnactive"
+        val dbUser = System.getenv("EA_DATABASE_USER") ?: "konstantimp"
+        val dbPass = System.getenv("EA_DATABASE_PWD") ?: "mypass"
 
         if (listOf(dbAddr, dbName, dbUser, dbPass).any { it.isEmpty() }) {
             println("To run migration specify environments")

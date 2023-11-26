@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2_0001" author="KonstantIMP">
+        <comment>Create table for promocodes storage</comment>
+        <createTable tableName="PROMOCODES">
+
+            <column name="uuid" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="description" type="VARCHAR(1024)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="value" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="general_count" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="available_count" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="expiration_date" type="DATE" defaultValue="now()">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cost" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

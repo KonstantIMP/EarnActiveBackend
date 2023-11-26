@@ -18,6 +18,8 @@ import org.kimp.earnactive.auth.api.TGetUserInfoReq
 import org.kimp.earnactive.auth.api.TGetUserInfoRsp
 import org.kimp.earnactive.auth.api.TRefreshTokenReq
 import org.kimp.earnactive.auth.api.TRefreshTokenRsp
+import org.kimp.earnactive.auth.api.TSetNameReq
+import org.kimp.earnactive.auth.api.TSetNameRsp
 import org.kimp.earnactive.auth.api.TTransaction
 import org.kimp.earnactive.auth.controller.model.TooOftenTransactionRequests
 import org.kimp.earnactive.auth.controller.model.TransactionException
@@ -48,14 +50,10 @@ class AuthController (
         responseObserver: StreamObserver<TAuthUserRsp>
     ) {
         try {
-            val user = usersService.getUserByPhone(request.phone)
+            var isNew = false
 
-            if (user == null) {
-                responseObserver.onError(
-                    Status.NOT_FOUND.withDescription("${request.phone} is unregistered").asRuntimeException()
-                )
-                return
-            }
+            val user = usersService.getUserByPhone(request.phone)
+                ?: usersService.createUser(request.phone, "").also { isNew = true }
 
             val transaction = transactionsService.requestTransactionForUser(user.uuid!!)
             responseObserver.onNext(
@@ -66,6 +64,7 @@ class AuthController (
                             .setDeadTime(transaction.expireTimestamp.millisToTimestamp())
                             .build()
                     )
+                    .setIsNew(isNew)
                     .build()
             )
             responseObserver.onCompleted()
@@ -74,6 +73,37 @@ class AuthController (
         } catch (e: TooOftenTransactionRequests) {
             responseObserver.onError(Status.ABORTED.withCause(e).asRuntimeException())
         }
+    }
+
+    override fun setName(
+        request: TSetNameReq,
+        responseObserver: StreamObserver<TSetNameRsp>
+    ) {
+        val jwtContent = jwtManager.extractJwtContent(request.accessToken)
+
+        if (jwtContent.tokenType != EJwtTokenType.EJwtTokenType_AUTH) {
+            responseObserver.onError(
+                Status.UNAUTHENTICATED
+                    .withDescription("Use auth token to get user credentials")
+                    .asRuntimeException()
+            )
+            return
+        }
+
+        if (jwtContent.expirationTimestamp.toMillis() <= nowProvider.nowMillis()) {
+            responseObserver.onError(
+                Status.UNAUTHENTICATED
+                    .withDescription("Token expired")
+                    .asRuntimeException()
+            )
+            return
+        }
+
+        val user = usersService.getUserByUUID(UUID.fromString(jwtContent.userUuid))
+        usersService.setUserName(user!!.uuid!!, request.name)
+
+        responseObserver.onNext(TSetNameRsp.getDefaultInstance())
+        responseObserver.onCompleted()
     }
 
     override fun createUser(
