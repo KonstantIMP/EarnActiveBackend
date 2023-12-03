@@ -144,5 +144,6 @@ class PromoCodesService(
         .setName(p.name)
         .setCost(p.cost!!)
         .setDescription(p.description)
+        .setAvatarUrl(p.avatarUrl)
         .build()
 }

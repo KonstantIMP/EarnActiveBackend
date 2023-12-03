@@ -120,4 +120,15 @@ open class PromocodesDao(configuration: Configuration?) : DAOImpl<PromocodesReco
      * Fetch records that have <code>cost IN (values)</code>
      */
     fun fetchByCost(vararg values: Int): List<org.kimp.earnactive.db.tables.pojos.Promocodes> = fetch(Promocodes.PROMOCODES.COST, *values.toTypedArray())
+
+    /**
+     * Fetch records that have <code>avatar_url BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    fun fetchRangeOfAvatarUrl(lowerInclusive: String?, upperInclusive: String?): List<org.kimp.earnactive.db.tables.pojos.Promocodes> = fetchRange(Promocodes.PROMOCODES.AVATAR_URL, lowerInclusive, upperInclusive)
+
+    /**
+     * Fetch records that have <code>avatar_url IN (values)</code>
+     */
+    fun fetchByAvatarUrl(vararg values: String): List<org.kimp.earnactive.db.tables.pojos.Promocodes> = fetch(Promocodes.PROMOCODES.AVATAR_URL, *values)
 }

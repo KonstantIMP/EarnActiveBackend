@@ -12,7 +12,7 @@ import org.jooq.ForeignKey
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row8
+import org.jooq.Row9
 import org.jooq.Schema
 import org.jooq.SelectField
 import org.jooq.Table
@@ -94,12 +94,17 @@ open class Promocodes(
     /**
      * The column <code>public.promocodes.expiration_date</code>.
      */
-    val EXPIRATION_DATE: TableField<PromocodesRecord, LocalDate?> = createField(DSL.name("expiration_date"), SQLDataType.LOCALDATE.nullable(false).defaultValue(DSL.field(DSL.raw("'2023-11-26'::date"), SQLDataType.LOCALDATE)), this, "")
+    val EXPIRATION_DATE: TableField<PromocodesRecord, LocalDate?> = createField(DSL.name("expiration_date"), SQLDataType.LOCALDATE.nullable(false).defaultValue(DSL.field(DSL.raw("'2023-12-03'::date"), SQLDataType.LOCALDATE)), this, "")
 
     /**
      * The column <code>public.promocodes.cost</code>.
      */
     val COST: TableField<PromocodesRecord, Int?> = createField(DSL.name("cost"), SQLDataType.INTEGER.nullable(false), this, "")
+
+    /**
+     * The column <code>public.promocodes.avatar_url</code>.
+     */
+    val AVATAR_URL: TableField<PromocodesRecord, String?> = createField(DSL.name("avatar_url"), SQLDataType.VARCHAR(2048).nullable(false).defaultValue(DSL.field(DSL.raw("''::character varying"), SQLDataType.VARCHAR)), this, "")
 
     private constructor(alias: Name, aliased: Table<PromocodesRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<PromocodesRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -142,18 +147,18 @@ open class Promocodes(
     public override fun rename(name: Table<*>): Promocodes = Promocodes(name.getQualifiedName(), null)
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row9 type methods
     // -------------------------------------------------------------------------
-    public override fun fieldsRow(): Row8<java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?> = super.fieldsRow() as Row8<java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?>
+    public override fun fieldsRow(): Row9<java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?, String?> = super.fieldsRow() as Row9<java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?, String?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?, String?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (java.util.UUID?, String?, String?, String?, Int?, Int?, LocalDate?, Int?, String?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

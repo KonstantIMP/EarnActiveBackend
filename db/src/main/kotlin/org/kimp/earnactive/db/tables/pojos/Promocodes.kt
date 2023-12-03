@@ -21,7 +21,8 @@ data class Promocodes(
     var generalCount: Int? = null,
     var availableCount: Int? = null,
     var expirationDate: LocalDate? = null,
-    var cost: Int? = null
+    var cost: Int? = null,
+    var avatarUrl: String? = null
 ): Serializable {
 
 
@@ -81,6 +82,12 @@ data class Promocodes(
         }
         else if (this.cost != o.cost)
             return false
+        if (this.avatarUrl == null) {
+            if (o.avatarUrl != null)
+                return false
+        }
+        else if (this.avatarUrl != o.avatarUrl)
+            return false
         return true
     }
 
@@ -95,6 +102,7 @@ data class Promocodes(
         result = prime * result + (if (this.availableCount == null) 0 else this.availableCount.hashCode())
         result = prime * result + (if (this.expirationDate == null) 0 else this.expirationDate.hashCode())
         result = prime * result + (if (this.cost == null) 0 else this.cost.hashCode())
+        result = prime * result + (if (this.avatarUrl == null) 0 else this.avatarUrl.hashCode())
         return result
     }
 
@@ -109,6 +117,7 @@ data class Promocodes(
         sb.append(", ").append(availableCount)
         sb.append(", ").append(expirationDate)
         sb.append(", ").append(cost)
+        sb.append(", ").append(avatarUrl)
 
         sb.append(")")
         return sb.toString()
