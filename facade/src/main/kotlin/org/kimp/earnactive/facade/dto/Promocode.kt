@@ -8,5 +8,6 @@ data class Promocode(
     val name: String,
     val desc: String,
     val cost: Int,
-    val value: String = ""
+    val value: String = "",
+    val avatarUrl: String = ""
 )

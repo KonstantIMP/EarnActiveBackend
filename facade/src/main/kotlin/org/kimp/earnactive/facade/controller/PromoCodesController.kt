@@ -32,7 +32,7 @@ class PromoCodesController : BaseController() {
             promocodesStub.getPromoCodesInfo(
                 TGetPromoCodesInfoReq.newBuilder().setAccessToken(accessToken).build()
             ).promoCodesList
-                .map { p -> Promocode(p.uuid, p.name, p.description, p.cost) }
+                .map { p -> Promocode(p.uuid, p.name, p.description, p.cost, avatarUrl =  p.avatarUrl) }
         )
     }
 
@@ -51,7 +51,8 @@ class PromoCodesController : BaseController() {
                         p.promoCodeInfo.name,
                         p.promoCodeInfo.description,
                         p.promoCodeInfo.cost,
-                        p.promoCodeValue
+                        p.promoCodeValue,
+                        p.promoCodeInfo.avatarUrl
                     )
                 }
         )
@@ -61,11 +62,15 @@ class PromoCodesController : BaseController() {
     fun getMyBalance(
         @RequestHeader("OAuth")
         accessToken: String
-    ): BalanceResponse = BalanceResponse(
-        promocodesStub.getMyStepsBalance(
+    ): BalanceResponse {
+        val balanceInfo = promocodesStub.getMyStepsBalance(
             TGetMyStepsBalanceReq.newBuilder().setAccessToken(accessToken).build()
-        ).balance
-    )
+        )
+        return BalanceResponse(
+            balanceInfo.balance,
+            balanceInfo.lastBalanceChangeTimestamp.seconds
+        )
+    }
 
     @PostMapping("promocodes/buy")
     fun buyPromo(
@@ -85,7 +90,8 @@ class PromoCodesController : BaseController() {
             p.promoCode.promoCodeInfo.name,
             p.promoCode.promoCodeInfo.description,
             p.promoCode.promoCodeInfo.cost,
-            p.promoCode.promoCodeValue
+            p.promoCode.promoCodeValue,
+            p.promoCode.promoCodeInfo.avatarUrl
         )
     }
 
