@@ -4,7 +4,7 @@
 package org.kimp.earnactive.db.tables
 
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.UUID
 import java.util.function.Function
 
@@ -74,9 +74,9 @@ open class StepsChanges(
     val DIFF: TableField<StepsChangesRecord, Int?> = createField(DSL.name("diff"), SQLDataType.INTEGER.nullable(false), this, "")
 
     /**
-     * The column <code>public.steps_changes.date</code>.
+     * The column <code>public.steps_changes.timestamp</code>.
      */
-    val DATE: TableField<StepsChangesRecord, LocalDate?> = createField(DSL.name("date"), SQLDataType.LOCALDATE.nullable(false).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATE)), this, "")
+    val TIMESTAMP: TableField<StepsChangesRecord, LocalDateTime?> = createField(DSL.name("timestamp"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "")
 
     private constructor(alias: Name, aliased: Table<StepsChangesRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<StepsChangesRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -136,16 +136,16 @@ open class StepsChanges(
     // -------------------------------------------------------------------------
     // Row3 type methods
     // -------------------------------------------------------------------------
-    public override fun fieldsRow(): Row3<UUID?, Int?, LocalDate?> = super.fieldsRow() as Row3<UUID?, Int?, LocalDate?>
+    public override fun fieldsRow(): Row3<UUID?, Int?, LocalDateTime?> = super.fieldsRow() as Row3<UUID?, Int?, LocalDateTime?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (UUID?, Int?, LocalDate?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (UUID?, Int?, LocalDateTime?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (UUID?, Int?, LocalDate?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (UUID?, Int?, LocalDateTime?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

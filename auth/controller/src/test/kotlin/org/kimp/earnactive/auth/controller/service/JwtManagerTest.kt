@@ -3,8 +3,8 @@ package org.kimp.earnactive.auth.controller.service
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.kimp.earnactive.auth.api.EJwtTokenType
-import org.kimp.earnactive.auth.controller.utils.toMillis
 import org.kimp.earnactive.common.now.FakeNowProvider
+import org.kimp.earnactive.utils.toMillis
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.time.Duration

@@ -18,6 +18,9 @@ import org.kimp.earnactive.promocodes.api.TGetPromoCodesInfoReq
 import org.kimp.earnactive.promocodes.api.TGetPromoCodesInfoRsp
 import org.kimp.earnactive.promocodes.api.TPromoCode
 import org.kimp.earnactive.promocodes.api.TPromoCodeInfo
+import org.kimp.earnactive.utils.millisToTimestamp
+import org.kimp.earnactive.utils.toMillis
+import java.time.ZoneId
 import java.util.UUID
 
 class PromoCodesService(
@@ -54,6 +57,11 @@ class PromoCodesService(
         responseObserver.onNext(
             TGetMyStepsBalanceRsp.newBuilder()
                 .setBalance(promoCodesManager.getUserBalance(UUID.fromString(user!!.uuid)))
+                .setLastBalanceChangeTimestamp(
+                    promoCodesManager.getLastUserTransactionTimestamp(UUID.fromString(user.uuid))
+                        ?.atZone(ZoneId.systemDefault())?.toInstant()?.toEpochMilli()?.millisToTimestamp()
+                        ?: user.creationTimestamp
+                )
                 .build()
         )
         responseObserver.onCompleted()

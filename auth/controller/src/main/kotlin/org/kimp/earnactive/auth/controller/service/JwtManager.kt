@@ -4,9 +4,9 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.kimp.earnactive.auth.api.EJwtTokenType
 import org.kimp.earnactive.auth.api.TJwtContent
-import org.kimp.earnactive.auth.controller.utils.millisToTimestamp
 import org.kimp.earnactive.common.now.NowProvider
 import org.kimp.earnactive.common.now.SystemNowProvider
+import org.kimp.earnactive.utils.millisToTimestamp
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 

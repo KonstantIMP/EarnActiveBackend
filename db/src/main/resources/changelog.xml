@@ -16,5 +16,6 @@
     <include file="2.0/0003_fill_promocodes.xml" relativeToChangelogFile="true" />
     <include file="2.0/0004_create_users_steps_changes_table.xml" relativeToChangelogFile="true" />
     <include file="2.0/0005_create_user_promocodes_table.xml" relativeToChangelogFile="true" />
+    <include file="2.0/0006_change_steps_transaction_timestamp_type.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

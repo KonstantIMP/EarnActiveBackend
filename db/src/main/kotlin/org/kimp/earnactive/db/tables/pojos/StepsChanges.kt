@@ -5,7 +5,7 @@ package org.kimp.earnactive.db.tables.pojos
 
 
 import java.io.Serializable
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.UUID
 
 
@@ -16,7 +16,7 @@ import java.util.UUID
 data class StepsChanges(
     var userUuid: UUID? = null,
     var diff: Int? = null,
-    var date: LocalDate? = null
+    var timestamp: LocalDateTime? = null
 ): Serializable {
 
 
@@ -40,11 +40,11 @@ data class StepsChanges(
         }
         else if (this.diff != o.diff)
             return false
-        if (this.date == null) {
-            if (o.date != null)
+        if (this.timestamp == null) {
+            if (o.timestamp != null)
                 return false
         }
-        else if (this.date != o.date)
+        else if (this.timestamp != o.timestamp)
             return false
         return true
     }
@@ -54,7 +54,7 @@ data class StepsChanges(
         var result = 1
         result = prime * result + (if (this.userUuid == null) 0 else this.userUuid.hashCode())
         result = prime * result + (if (this.diff == null) 0 else this.diff.hashCode())
-        result = prime * result + (if (this.date == null) 0 else this.date.hashCode())
+        result = prime * result + (if (this.timestamp == null) 0 else this.timestamp.hashCode())
         return result
     }
 
@@ -63,7 +63,7 @@ data class StepsChanges(
 
         sb.append(userUuid)
         sb.append(", ").append(diff)
-        sb.append(", ").append(date)
+        sb.append(", ").append(timestamp)
 
         sb.append(")")
         return sb.toString()

@@ -53,6 +53,7 @@ message TGetMyStepsBalanceReq {
 
 message TGetMyStepsBalanceRsp {
   int32 balance = 1;
+  google.protobuf.Timestamp last_balance_change_timestamp = 2;
 }
 
 message TAddStepsReq {

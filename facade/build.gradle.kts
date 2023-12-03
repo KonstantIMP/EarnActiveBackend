@@ -12,6 +12,7 @@ plugins {
 }
 
 dependencies {
+    implementation(libs.bundles.logging)
     implementation(libs.bundles.spring)
     implementation(projects.promocodes.api)
     implementation(projects.weather.api)

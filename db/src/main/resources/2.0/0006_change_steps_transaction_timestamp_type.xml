@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2_0006" author="KonstantIMP">
+        <comment>Steps transactions should contains full timestamp</comment>
+
+        <addColumn tableName="STEPS_CHANGES">
+            <column name="timestamp" type="TIMESTAMP"
+                valueComputed="date::timestamp"
+                defaultValueComputed="now()">
+            </column>
+        </addColumn>
+
+        <dropColumn tableName="STEPS_CHANGES" columnName="date" />
+    </changeSet>
+
+</databaseChangeLog>

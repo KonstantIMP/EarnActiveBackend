@@ -4,10 +4,10 @@ grpc:
   client:
     auth:
       address: "localhost:9090"
-      negotiationType: plaintext
+      negotiationType: PLAINTEXT
     weather:
       address: "localhost:9093"
-      negotiationType: plaintext
+      negotiationType: PLAINTEXT
     promocodes:
       address: "localhost:9094"
-      negotiationType: plaintext
+      negotiationType: PLAINTEXT

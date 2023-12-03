@@ -94,7 +94,7 @@ open class Promocodes(
     /**
      * The column <code>public.promocodes.expiration_date</code>.
      */
-    val EXPIRATION_DATE: TableField<PromocodesRecord, LocalDate?> = createField(DSL.name("expiration_date"), SQLDataType.LOCALDATE.nullable(false).defaultValue(DSL.field(DSL.raw("'2023-11-07'::date"), SQLDataType.LOCALDATE)), this, "")
+    val EXPIRATION_DATE: TableField<PromocodesRecord, LocalDate?> = createField(DSL.name("expiration_date"), SQLDataType.LOCALDATE.nullable(false).defaultValue(DSL.field(DSL.raw("'2023-11-26'::date"), SQLDataType.LOCALDATE)), this, "")
 
     /**
      * The column <code>public.promocodes.cost</code>.

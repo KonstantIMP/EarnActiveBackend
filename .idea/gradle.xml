@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/common/lock" />
             <option value="$PROJECT_DIR$/common/now" />
+            <option value="$PROJECT_DIR$/common/utils" />
             <option value="$PROJECT_DIR$/db" />
             <option value="$PROJECT_DIR$/facade" />
             <option value="$PROJECT_DIR$/promocodes" />

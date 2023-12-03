@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.bundles.jwt)
     implementation(projects.common.lock)
     implementation(projects.common.now)
+    implementation(projects.common.utils)
     implementation(projects.auth.api)
     implementation(projects.auth.sms)
     implementation(projects.db)

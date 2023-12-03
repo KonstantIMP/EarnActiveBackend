@@ -1,4 +1,4 @@
-package org.kimp.earnactive.auth.controller.utils
+package org.kimp.earnactive.utils
 
 import com.google.protobuf.Timestamp
 
