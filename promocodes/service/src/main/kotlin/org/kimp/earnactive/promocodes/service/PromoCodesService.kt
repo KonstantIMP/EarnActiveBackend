@@ -6,8 +6,8 @@ import org.kimp.earnactive.auth.api.IEarnActiveAuthGrpc.IEarnActiveAuthBlockingS
 import org.kimp.earnactive.auth.api.TGetUserInfoReq
 import org.kimp.earnactive.db.tables.pojos.Promocodes
 import org.kimp.earnactive.promocodes.api.IEarnActivePromoCodesGrpc.IEarnActivePromoCodesImplBase
-import org.kimp.earnactive.promocodes.api.TAddStepsReq
-import org.kimp.earnactive.promocodes.api.TAddStepsRsp
+import org.kimp.earnactive.promocodes.api.TSetStepsReq
+import org.kimp.earnactive.promocodes.api.TSetStepsRsp
 import org.kimp.earnactive.promocodes.api.TBuyPromoCodeReq
 import org.kimp.earnactive.promocodes.api.TBuyPromoCodeRsp
 import org.kimp.earnactive.promocodes.api.TGetMyPromoCodesReq
@@ -67,17 +67,19 @@ class PromoCodesService(
         responseObserver.onCompleted()
     }
 
-    override fun addSteps(
-        request: TAddStepsReq,
-        responseObserver: StreamObserver<TAddStepsRsp>
+    override fun setSteps(
+        request: TSetStepsReq,
+        responseObserver: StreamObserver<TSetStepsRsp>
     ) {
         val user = authStub.getUserInfo(
             TGetUserInfoReq.newBuilder().setAuthToken(request.accessToken).build()
         )
 
-        promoCodesManager.addStepsToBalance(UUID.fromString(user!!.uuid), request.steps)
+        val stepsBalance = promoCodesManager.getUserBalance(UUID.fromString(user!!.uuid))
+        promoCodesManager.addStepsToBalance(UUID.fromString(user.uuid), request.steps - stepsBalance)
+
         responseObserver.onNext(
-            TAddStepsRsp.newBuilder().setAddedSteps(request.steps).build()
+            TSetStepsRsp.newBuilder().setAddedSteps(request.steps).build()
         )
         responseObserver.onCompleted()
     }

@@ -5,7 +5,6 @@ import io.grpc.StatusRuntimeException
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.web.bind.annotation.ExceptionHandler
 
-
 open class BaseController {
     @ExceptionHandler(StatusRuntimeException::class)
     fun handleGrpcStubException(

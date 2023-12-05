@@ -5,7 +5,7 @@ import org.kimp.earnactive.facade.dto.BalanceResponse
 import org.kimp.earnactive.facade.dto.Promocode
 import org.kimp.earnactive.facade.dto.PromocodesResponse
 import org.kimp.earnactive.promocodes.api.IEarnActivePromoCodesGrpc.IEarnActivePromoCodesBlockingStub
-import org.kimp.earnactive.promocodes.api.TAddStepsReq
+import org.kimp.earnactive.promocodes.api.TSetStepsReq
 import org.kimp.earnactive.promocodes.api.TBuyPromoCodeReq
 import org.kimp.earnactive.promocodes.api.TGetMyPromoCodesReq
 import org.kimp.earnactive.promocodes.api.TGetMyStepsBalanceReq
@@ -102,8 +102,8 @@ class PromoCodesController : BaseController() {
         @RequestParam("steps")
         steps: Int
     ): BalanceResponse {
-        promocodesStub.addSteps(
-            TAddStepsReq.newBuilder()
+        promocodesStub.setSteps(
+            TSetStepsReq.newBuilder()
                 .setAccessToken(accessToken)
                 .setSteps(steps)
                 .build()

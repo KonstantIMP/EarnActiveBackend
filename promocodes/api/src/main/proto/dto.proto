@@ -57,11 +57,11 @@ message TGetMyStepsBalanceRsp {
   google.protobuf.Timestamp last_balance_change_timestamp = 2;
 }
 
-message TAddStepsReq {
+message TSetStepsReq {
   string access_token = 1;
   int32 steps = 2;
 }
 
-message TAddStepsRsp {
+message TSetStepsRsp {
   int32 added_steps = 1;
 }

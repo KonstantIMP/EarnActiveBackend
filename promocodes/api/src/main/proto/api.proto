@@ -12,5 +12,5 @@ service IEarnActivePromoCodes {
   rpc GetMyPromoCodes(TGetMyPromoCodesReq) returns (TGetMyPromoCodesRsp) {}
   rpc BuyPromoCode(TBuyPromoCodeReq) returns (TBuyPromoCodeRsp) {}
   rpc GetMyStepsBalance(TGetMyStepsBalanceReq) returns (TGetMyStepsBalanceRsp) {}
-  rpc AddSteps(TAddStepsReq) returns (TAddStepsRsp) {}
+  rpc SetSteps(TSetStepsReq) returns (TSetStepsRsp) {}
 }
